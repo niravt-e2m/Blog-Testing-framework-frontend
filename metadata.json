@@ -1,0 +1,5 @@
+{
+  "name": "EditorialAI - Content Quality & Tone Dashboard",
+  "description": "A sophisticated, Notion-inspired dashboard for evaluating blog posts and AI content against brand voice and editorial benchmarks using the Gemini API.",
+  "requestFramePermissions": []
+}
