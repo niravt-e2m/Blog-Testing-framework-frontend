@@ -88,9 +88,7 @@ const ParticleLogo: React.FC = () => {
       }
 
       const dpr = window.devicePixelRatio || 1;
-      // #region agent log
-      fetch('http://127.0.0.1:7244/ingest/e75ea0fa-bba9-4144-9a73-0a4737346593',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:'debug-session',runId:'run1',hypothesisId:'H1',location:'ParticleLogo.tsx:94',message:'init_dimensions',data:{dpr,displayWidth,displayHeight},timestamp:Date.now()})}).catch(()=>{});
-      // #endregion agent log
+
 
       canvas.width = Math.round(displayWidth * dpr);
       canvas.height = Math.round(displayHeight * dpr);
@@ -119,9 +117,7 @@ const ParticleLogo: React.FC = () => {
       const baselineY = topY + ascent;
 
       tempCtx.fillText(text, 2 * sampleScale, baselineY);
-      // #region agent log
-      fetch('http://127.0.0.1:7244/ingest/e75ea0fa-bba9-4144-9a73-0a4737346593',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:'debug-session',runId:'run1',hypothesisId:'H2',location:'ParticleLogo.tsx:118',message:'text_render_config',data:{text,baseline:'alphabetic',align:'left',font:tempCtx.font,offsetX:2*sampleScale,offsetY:baselineY},timestamp:Date.now()})}).catch(()=>{});
-      // #endregion agent log
+
 
       const imageData = tempCtx.getImageData(0, 0, tempCanvas.width, tempCanvas.height);
       const pixels = imageData.data;
@@ -141,13 +137,7 @@ const ParticleLogo: React.FC = () => {
           }
         }
       }
-      // #region agent log
-      const particleStats = particles.reduce((acc, p) => {
-        acc.count += 1;
-        acc.minY = Math.min(acc.minY, p.homeY);
-        acc.maxY = Math.max(acc.maxY, p.homeY);
-        return acc;
-      }, { count: 0, minY: Number.POSITIVE_INFINITY, maxY: Number.NEGATIVE_INFINITY });
+
 
       const baselineYDisplay = baselineY / sampleScale;
       const maxTextY = baselineYDisplay + descent / sampleScale;
@@ -172,13 +162,10 @@ const ParticleLogo: React.FC = () => {
           p.y += shiftY;
         });
       }
-      fetch('http://127.0.0.1:7244/ingest/e75ea0fa-bba9-4144-9a73-0a4737346593',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:'debug-session',runId:'run1',hypothesisId:'H3',location:'ParticleLogo.tsx:140',message:'particle_stats',data:particleStats,timestamp:Date.now()})}).catch(()=>{});
-      // #endregion agent log
+
 
       setIsReady(true);
-      // #region agent log
-      fetch('http://127.0.0.1:7244/ingest/e75ea0fa-bba9-4144-9a73-0a4737346593',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:'debug-session',runId:'run1',hypothesisId:'H4',location:'ParticleLogo.tsx:146',message:'canvas_ready',data:{canvasWidth:canvas.width,canvasHeight:canvas.height,styleWidth:canvas.style.width,styleHeight:canvas.style.height},timestamp:Date.now()})}).catch(()=>{});
-      // #endregion agent log
+
     };
 
     const animate = () => {

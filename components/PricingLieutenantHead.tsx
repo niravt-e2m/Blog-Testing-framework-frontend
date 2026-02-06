@@ -18,9 +18,7 @@ const LieutenantHeadModel: React.FC = () => {
   });
 
   useEffect(() => {
-    // #region agent log
-    fetch('http://127.0.0.1:7244/ingest/e75ea0fa-bba9-4144-9a73-0a4737346593',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'PricingLieutenantHead.tsx:useEffect',message:'useEffect started',data:{sceneExists:!!scene,texturesKeys:Object.keys(textures)},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'D'})}).catch(()=>{});
-    // #endregion
+
 
     const texList = [
       textures.headDiffuse,
@@ -34,9 +32,7 @@ const LieutenantHeadModel: React.FC = () => {
       textures.jacketAO,
     ];
 
-    // #region agent log
-    fetch('http://127.0.0.1:7244/ingest/e75ea0fa-bba9-4144-9a73-0a4737346593',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'PricingLieutenantHead.tsx:textures',message:'Texture load check',data:{headDiffuseLoaded:!!textures.headDiffuse?.image,bodyDiffuseLoaded:!!textures.bodyDiffuse?.image,jacketDiffuseLoaded:!!textures.jacketDiffuse?.image},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'A'})}).catch(()=>{});
-    // #endregion
+
 
     texList.forEach((tex) => {
       tex.flipY = false;
@@ -99,17 +95,17 @@ const LieutenantHeadModel: React.FC = () => {
         // Head: includes head, eyes, soft (tubes/pipes), lens
         // Jacket: includes jacket
         // Body: includes body, bandages
-        const isHead = materialName.includes('lieutenant_head') || 
-                       materialName.includes('lens') ||
-                       name.includes('head') || 
-                       name.includes('eyes') || 
-                       name.includes('soft') ||
-                       name.includes('lens');
-        const isJacket = materialName.includes('lieutenant_jacket') || 
-                         name.includes('jacket');
-        const isBody = materialName.includes('body') || 
-                       name.includes('body') || 
-                       name.includes('bandages');
+        const isHead = materialName.includes('lieutenant_head') ||
+          materialName.includes('lens') ||
+          name.includes('head') ||
+          name.includes('eyes') ||
+          name.includes('soft') ||
+          name.includes('lens');
+        const isJacket = materialName.includes('lieutenant_jacket') ||
+          name.includes('jacket');
+        const isBody = materialName.includes('body') ||
+          name.includes('body') ||
+          name.includes('bandages');
 
         if (isHead) {
           applyMaterial(mesh, headMaterial);
@@ -129,17 +125,11 @@ const LieutenantHeadModel: React.FC = () => {
       }
     });
 
-    // #region agent log
-    fetch('http://127.0.0.1:7244/ingest/e75ea0fa-bba9-4144-9a73-0a4737346593',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'PricingLieutenantHead.tsx:traverse',message:'All meshes in scene',data:{meshCount:meshInfo.length,meshes:meshInfo},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'B,C',runId:'post-fix'})}).catch(()=>{});
-    // #endregion
 
-    // #region agent log
-    fetch('http://127.0.0.1:7244/ingest/e75ea0fa-bba9-4144-9a73-0a4737346593',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'PricingLieutenantHead.tsx:applied',message:'Applied materials',data:{appliedCount:appliedMaterials.length,applied:appliedMaterials},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'FIX',runId:'post-fix'})}).catch(()=>{});
-    // #endregion
 
-    // #region agent log
-    fetch('http://127.0.0.1:7244/ingest/e75ea0fa-bba9-4144-9a73-0a4737346593',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'PricingLieutenantHead.tsx:unmatched',message:'Unmatched meshes (now with fallback)',data:{unmatchedCount:unmatchedMeshes.length,unmatched:unmatchedMeshes},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'D',runId:'post-fix'})}).catch(()=>{});
-    // #endregion
+
+
+
   }, [scene, textures]);
 
   return (
