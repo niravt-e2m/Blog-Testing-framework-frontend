@@ -101,7 +101,7 @@ const InputWizard: React.FC = () => {
   const isStepValid = () => {
     switch (currentStep) {
       case 0:
-        return blogTitle.trim().length > 0 && blogText.trim().length >= 100;
+        return blogTitle.trim().length > 0 && blogText.trim().length >= 10;
       case 1:
         return blogOutline.trim().length > 0;
       case 2:
@@ -198,8 +198,16 @@ const InputWizard: React.FC = () => {
                     "
                   />
                   <div className="flex justify-between mt-2 text-sm text-gray-500">
-                    <span>Paste your full article or blog post</span>
-                    <span>{blogText.length.toLocaleString()} characters</span>
+                    <span>
+                      {blogText.length < 10 && blogText.length > 0 ? (
+                        <span className="text-red-500">Must be at least 10 characters</span>
+                      ) : (
+                        <span>Paste your full article or blog post</span>
+                      )}
+                    </span>
+                    <span className={blogText.length > 0 && blogText.length < 10 ? "text-red-500" : ""}>
+                      {blogText.length.toLocaleString()} / 10 characters min
+                    </span>
                   </div>
                 </div>
               </div>
